@@ -1,0 +1,6 @@
+# I modelli di depth_anything_v2 si possono scaricare da qua
+# https://github.com/DepthAnything/Depth-Anything-V2?tab=readme-ov-file#pre-trained-models
+
+# questi parametri vanno impostati in base al modello
+encoder: "vitb"
+input_size: 518

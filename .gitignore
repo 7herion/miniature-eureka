@@ -1,0 +1,6 @@
+__pycache__
+
+# In questa directory ci va il modello da scaricare
+checkpoints/*
+
+temp
