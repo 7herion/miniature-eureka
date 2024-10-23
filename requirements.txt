@@ -1,6 +1,7 @@
-# gradio_imageslider
-# gradio==4.29.0
-# matplotlib
-opencv-python
-torch
-torchvision
+Flask==3.0.3
+numpy==1.26.4
+PyYAML==6.0.1
+torch==2.2.2
+torchvision==0.17.2
+
+opencv-python-headless
