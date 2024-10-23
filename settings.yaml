@@ -1,6 +1,8 @@
 # I modelli di depth_anything_v2 si possono scaricare da qua
-# https://github.com/DepthAnything/Depth-Anything-V2?tab=readme-ov-file#pre-trained-models
+# https://github.com/DepthAnything/Depth-Anything-V2/tree/main/metric_depth#pre-trained-models
 
 # questi parametri vanno impostati in base al modello
 encoder: "vitb"
 input_size: 518
+max_depth: 20 # in metri
+model_path: "checkpoints/depth_anything_v2_metric_vkitti_vitb.pth"

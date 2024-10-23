@@ -4,13 +4,15 @@ import yaml
 from depth_anything_v2.dpt import DepthAnythingV2
 
 def depth_calculation(filename: str):
-    '''NOTA: I valori delle distanze NON sono in metri'''
+    '''Calcola la distanza dei punti nell'immagine'''
 
     # Leggo alcune cose da settings.yaml
     with open('settings.yaml', 'r') as settings_file:
         env_settings = yaml.safe_load(settings_file)
-    encoder_config = env_settings['encoder'] # 'vitb'
-    input_size_config = env_settings['input_size'] # 518
+    encoder_config      = env_settings['encoder']       # 'vitb'
+    input_size_config   = env_settings['input_size']    # 518
+    max_depth_config    = env_settings['max_depth']     # 20
+    model_path_config   = env_settings['model_path']    # checkpoints/depth_anything_v2_metric_vkitti_vitb.pth
 
     model_configs = {
         'vits': {'encoder': 'vits', 'features': 64, 'out_channels': [48, 96, 192, 384]},
@@ -20,8 +22,8 @@ def depth_calculation(filename: str):
     }
     DEVICE = 'cuda' if torch.cuda.is_available() else 'mps' if torch.backends.mps.is_available() else 'cpu'
 
-    depth_anything = DepthAnythingV2(**model_configs[encoder_config])
-    depth_anything.load_state_dict(torch.load(f'checkpoints/depth_anything_v2_{encoder_config}.pth', map_location='cpu'))
+    depth_anything = DepthAnythingV2(**{**model_configs[encoder_config], 'max_depth': max_depth_config})
+    depth_anything.load_state_dict(torch.load(model_path_config, map_location='cpu'))
     depth_anything = depth_anything.to(DEVICE).eval()
     
     raw_image = cv2.imread(filename)

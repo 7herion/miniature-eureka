@@ -8,7 +8,7 @@ app = Flask(__name__)
 @app.route("/distance-imagelist", methods=["POST"])
 def distance_image_list():
     '''
-    Endpoint per stimare la distanza delle immagini contenute in una directory
+    Endpoint per stimare la distanza di una lista di immagini
 
     Esempio di payload per la request:
     [
@@ -46,4 +46,4 @@ def distance_image_list():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5002) # default port=5000
+    app.run(host='0.0.0.0')
